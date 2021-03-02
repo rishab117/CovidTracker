@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchDetailActivity("This message came from MainActivity");
+                launchDetailActivity("e6aba492-c283-4261-a96d-6f21e929c883");
             }
         });
     }
