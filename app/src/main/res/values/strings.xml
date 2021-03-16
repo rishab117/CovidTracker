@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CovidTracker</string>
+    <string name="action_sort" />
+    <string name="sort_new">sort_new</string>
+    <string name="sort_total">sort_total</string>
+    <string name="action_search">menu_search</string>
 </resources>
