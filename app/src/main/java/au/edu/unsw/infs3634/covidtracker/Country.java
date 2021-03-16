@@ -134,15 +134,12 @@ public class Country {
     }
 
     public static Country getCountry(String id) {
-        // Implement a method that returns one country based on it's id
         ArrayList<Country> countries = Country.getCountries();
-        for (Country country: countries){
+        for(final Country country : countries) {
             if (country.getId().equals(id)) {
                 return country;
             }
-
         }
         return null;
     }
-
 }

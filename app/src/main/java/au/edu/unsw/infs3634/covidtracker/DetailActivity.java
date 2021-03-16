@@ -7,55 +7,61 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String INTENT_MESSAGE = "au.edu.unsw.infs3634.covidtracker.intent_message";
-    private TextView tvCountry, tvCountryCode,tvSlug,tvTotalRecovered, tvnewDeaths, tvnewConfirmed, tvTotalConfirmed,tvnewRecovered, tvTotalDeaths;
-            private Button search;
+
+    private TextView mCountry;
+    private TextView mNewCases;
+    private TextView mTotalCases;
+    private TextView mNewDeaths;
+    private TextView mTotalDeaths;
+    private TextView mNewRecovered;
+    private TextView mTotalRecovered;
+    private Button mSearch;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        tvCountry = findViewById(R.id.textCountry);
-        tvCountryCode = findViewById(R.id.textCountryCode);
-        tvnewConfirmed = findViewById(R.id.textnewConfirmed);
-        tvnewDeaths = findViewById(R.id.textnewDeaths);
-        tvTotalConfirmed = findViewById(R.id.textTotalConfirmed);
-        tvnewRecovered = findViewById(R.id.textnewRecovered);
-        tvTotalDeaths = findViewById(R.id.textTotalDeaths);
-        tvSlug = findViewById(R.id.textSlug);
-        tvTotalRecovered = findViewById(R.id.textTotalRecovered);
-
+        mCountry = findViewById(R.id.tvCountry);
+        mNewCases = findViewById(R.id.tvNewCases);
+        mTotalCases = findViewById(R.id.tvTotalCases);
+        mNewDeaths = findViewById(R.id.tvNewDeaths);
+        mTotalDeaths = findViewById(R.id.tvTotalDeaths);
+        mNewRecovered = findViewById(R.id.tvNewRecovered);
+        mTotalRecovered = findViewById(R.id.tvTotalRecovered);
+        mSearch = findViewById(R.id.btSearch);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra(INTENT_MESSAGE);
+
         Country country = Country.getCountry(id);
-
-        if (country != null){
+        if(country != null) {
             setTitle(country.getCountryCode());
-            tvCountry.setText(country.getCountry());
-            tvnewConfirmed.setText(String.valueOf(country.getNewConfirmed()));
-            tvnewDeaths.setText(String.valueOf(country.getNewDeaths()));
-            tvTotalConfirmed.setText(String.valueOf(country.getTotalConfirmed()));
-            tvnewRecovered.setText(String.valueOf(country.getNewRecovered()));
-            tvTotalDeaths.setText(String.valueOf(country.getTotalDeaths()));
-            tvTotalRecovered.setText(String.valueOf(country.getTotalRecovered()));
-
-            search.setOnClickListener(new View.OnClickListener() {
+            mCountry.setText(country.getCountry());
+            mNewCases.setText(String.valueOf(country.getNewConfirmed()));
+            mTotalCases.setText(String.valueOf(country.getTotalConfirmed()));
+            mNewDeaths.setText(String.valueOf(country.getNewDeaths()));
+            mTotalDeaths.setText(String.valueOf(country.getTotalDeaths()));
+            mNewRecovered.setText(String.valueOf(country.getNewRecovered()));
+            mTotalRecovered.setText(String.valueOf(country.getTotalRecovered()));
+            mSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     searchCountry(country.getCountry());
                 }
             });
         }
-
-
     }
 
     private void searchCountry(String country) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=covid" + country));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=covid " + country));
         startActivity(intent);
     }
 }

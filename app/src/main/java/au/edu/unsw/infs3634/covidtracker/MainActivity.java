@@ -1,7 +1,6 @@
 package au.edu.unsw.infs3634.covidtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -13,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private CountryAdapter mAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.rvList);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        CountryAdapter.RecyclerViewClickListner mListener = new CountryAdapter.RecyclerViewClickListner(){
+        CountryAdapter.RecyclerViewClickListener listener = new CountryAdapter.RecyclerViewClickListener() {
             @Override
-            public void onClick(View view, String id){
+            public void onClick(View view, String id) {
                 launchDetailActivity(id);
             }
         };
-        mAdapter = new CountryAdpater(Country.getCountries(),mListener);
+        mAdapter = new CountryAdapter(Country.getCountries(), listener);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     private void launchDetailActivity(String message) {
