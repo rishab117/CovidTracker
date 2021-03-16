@@ -6,8 +6,12 @@
         android:title="@string/action_sort"
         app:showAsAction="always">
         <menu>
-            <item android:title="@string/sort_new" />
-            <item android:title="@string/sort_total" />
+            <item
+                android:id="@+id/sort_new"
+                android:title="@string/sort_new" />
+            <item
+                android:id="@+id/sort_total"
+                android:title="@string/sort_total" />
         </menu>
     </item>
     <item

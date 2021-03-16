@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@nonNull MenuItem item){
-        return super
+        switch (item.getItemId()){
+            case.R.id.sort_new:
+            mAdapter.sort(CountryAdapter.SORT_METHOD_NEW);
+            return true;
+            case.R.id.sort_total:
+            mAdapter.sort(CountryAdapter.SORT_METHOD_TOTAL);
+            default:
+                return super.onOptionsItemSelected();
+        }
+
     }
 }
